@@ -4,13 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clipboard</title>
-  <link rel="shortcut icon" href="white_on_trans.png" type="image/x-icon">
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alata&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-no-repeat bg-contain bg-top" style="background-image: url(bg-header-desktop.png);">
+  <div id="loading-container" class="loading-container">
+        <img src="logo.png" alt="Logo" class="logo">
+        <div class="loading-text">Loading...</div>
+  </div>
   <!-- hero container -->
   <section class="hero">
     <div class="max-w-6xl flex flex-col justify-center items-center mx-auto text-center my-20 p-12">
@@ -170,5 +174,27 @@
   </div>
    </footer>
   <script src="script.js"></script>
+  <script>
+        // Set a minimum display time for the loading screen
+        const minLoadingTime = 5000; // 5000 milliseconds = 5 seconds
+        const loadingStartTime = new Date().getTime();
+
+        window.addEventListener('load', function() {
+            const currentTime = new Date().getTime();
+            const elapsedTime = currentTime - loadingStartTime;
+            const remainingTime = minLoadingTime - elapsedTime;
+
+            if (remainingTime > 0) {
+                setTimeout(hideLoadingScreen, remainingTime);
+            } else {
+                hideLoadingScreen();
+            }
+        });
+
+        function hideLoadingScreen() {
+            document.getElementById('loading-container').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
